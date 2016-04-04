@@ -10,7 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cybulski.nazarko.exampleswipeitem.R;
-import com.cybulski.nazarko.exampleswipeitem.adapter.RecyclerViewAdapter;
+import com.cybulski.nazarko.exampleswipeitem.adapter.RecyclerViewOneAdapter;
+import com.cybulski.nazarko.exampleswipeitem.adapter.RecyclerViewThreeAdapter;
 import com.daimajia.swipe.util.Attributes;
 
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class ThreeFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_one, container, false);
+    View view = inflater.inflate(R.layout.fragment_three, container, false);
     recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
     // Layout Managers:
     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -50,8 +51,8 @@ public class ThreeFragment extends Fragment {
     // Adapter:
     String[] adapterData = new String[]{"Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"};
     mDataSet = new ArrayList<String>(Arrays.asList(adapterData));
-    mAdapter = new RecyclerViewAdapter(getActivity(), mDataSet);
-    ((RecyclerViewAdapter) mAdapter).setMode(Attributes.Mode.Single);
+    mAdapter = new RecyclerViewThreeAdapter(getActivity(), mDataSet);
+    ((RecyclerViewThreeAdapter) mAdapter).setMode(Attributes.Mode.Single);
     recyclerView.setAdapter(mAdapter);
 
         /* Listeners */
