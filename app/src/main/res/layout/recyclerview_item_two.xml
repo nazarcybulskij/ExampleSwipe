@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
 
@@ -14,10 +15,19 @@
       android:id="@+id/rigth_swipe"
       android:layout_width="80dp"
       android:layout_height="80dp"
-      android:background="#FF5534"
+      android:background="@color/grey_tab_2"
       android:gravity="center"
       android:tag="Bottom3"
       android:weightSum="10">
+
+      <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="8"
+        android:text="@string/did_not_attend"
+        android:textColor="#fff"
+        android:gravity="center"
+        android:textSize="13sp" />
 
     </LinearLayout>
 
@@ -25,10 +35,21 @@
       android:id="@+id/left_swipe"
       android:layout_width="80dp"
       android:layout_height="80dp"
-      android:background="#E4007C"
+      android:background="@color/orange_tab_2"
       android:gravity="center"
       android:tag="Bottom3"
       android:weightSum="10">
+
+      <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="8"
+        android:text="@string/check_out"
+        android:textColor="#fff"
+        android:gravity="center"
+        android:textSize="13sp" />
+
+
 
     </LinearLayout>
 
@@ -43,17 +64,29 @@
       android:elevation="5dp"
       android:padding="10dp">
 
-      <TextView
-        android:id="@+id/position"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
+      <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/avatar"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:src="@mipmap/ic_launcher"
+        app:civ_border_width="0dp"
+        app:civ_border_color="#FF000000"/>
+
 
       <TextView
         android:id="@+id/text_data"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="4dp"
+        android:layout_gravity="center_vertical"
         android:tag="Hover"/>
     </LinearLayout>
+
+
 
   </com.daimajia.swipe.SwipeLayout>
 

@@ -1,3 +1,5 @@
 <resources>
   <string name="app_name">ExampleSwipeItem</string>
+  <string name="did_not_attend">DID NOT ATTEND</string>
+  <string name="check_out">CHECK OUT</string>
 </resources>

@@ -6,4 +6,6 @@
   <color name="blue_tabs">#00C5DD</color>
   <color name="colorPrimaryDark">#313942</color>
   <color name="colorPrimary">#313942</color>
+  <color name="orange_tab_2">#FF8023</color>
+  <color name="grey_tab_2">#C9C9C9</color>
 </resources>

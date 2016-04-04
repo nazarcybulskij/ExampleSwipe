@@ -13,8 +13,11 @@ import com.cybulski.nazarko.exampleswipeitem.R;
 import com.daimajia.swipe.SimpleSwipeListener;
 import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by nazarko on 4/4/16.
@@ -24,13 +27,13 @@ public class RecyclerViewOneAdapter extends RecyclerSwipeAdapter<RecyclerViewOne
 
 public static class SimpleViewHolder extends RecyclerView.ViewHolder {
   SwipeLayout swipeLayout;
-  TextView textViewPos;
+  CircleImageView avatarimage;
   TextView textViewData;
 
   public SimpleViewHolder(View itemView) {
     super(itemView);
     swipeLayout = (SwipeLayout) itemView.findViewById(R.id.swipe);
-    textViewPos = (TextView) itemView.findViewById(R.id.position);
+    avatarimage = (CircleImageView) itemView.findViewById(R.id.avatar);
     textViewData = (TextView) itemView.findViewById(R.id.text_data);
 
     itemView.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +82,7 @@ private ArrayList<String> mDataset;
       }
     });
 
-    viewHolder.textViewPos.setText((position + 1) + ".");
+    Picasso.with(mContext).load(RecyclerViewTwoAdapter.URL_IMAGE_STUB[position%5]).into(viewHolder.avatarimage);
     viewHolder.textViewData.setText(item);
     mItemManger.bindView(viewHolder.itemView, position);
   }
