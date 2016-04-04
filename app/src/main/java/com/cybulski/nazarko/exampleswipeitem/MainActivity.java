@@ -10,6 +10,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.cybulski.nazarko.exampleswipeitem.fragment.OneFragment;
 import com.cybulski.nazarko.exampleswipeitem.fragment.ThreeFragment;
@@ -26,21 +28,52 @@ public class MainActivity extends AppCompatActivity {
   private TabLayout tabLayout;
   private NonSwipeableViewPager viewPager;
 
+  private Spinner spinnerNav;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
     toolbar = (Toolbar) findViewById(R.id.toolbar);
+    spinnerNav = (Spinner)findViewById(R.id.spinner_nav);
     setSupportActionBar(toolbar);
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setDisplayShowTitleEnabled(false);
+    toolbar.setTitle("");
+    toolbar.setSubtitle("");
 
     viewPager = (NonSwipeableViewPager) findViewById(R.id.viewpager);
     setupViewPager(viewPager);
 
     tabLayout = (TabLayout) findViewById(R.id.tabs);
     tabLayout.setupWithViewPager(viewPager);
+
+    initSpinner();
+  }
+
+  private void initSpinner() {
+    ArrayList<String> list = new ArrayList<String>();
+    list.add("Top News");
+    list.add("Politics");
+    list.add("Business");
+    list.add("Sports");
+    list.add("Movies");
+
+    String[] array = new String[list.size()];
+    array = list.toArray(array);
+
+
+    ArrayAdapter<String> adapter  =  new  ArrayAdapter<String>(
+        this, android.R.layout.simple_list_item_1, array );
+    spinnerNav.setAdapter(adapter);
+
+
+
+
+
+
   }
 
   @Override
