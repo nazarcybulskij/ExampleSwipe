@@ -2,4 +2,7 @@
   <string name="app_name">ExampleSwipeItem</string>
   <string name="did_not_attend">DID NOT ATTEND</string>
   <string name="check_out">CHECK OUT</string>
+  <string name="check_in">CHECK IN</string>
+  <string name="undo">UNDO</string>
+  <string name="checked_in">Checked in</string>
 </resources>

@@ -29,12 +29,14 @@ public static class SimpleViewHolder extends RecyclerView.ViewHolder {
   SwipeLayout swipeLayout;
   CircleImageView avatarimage;
   TextView textViewData;
+  TextView textViewChecked;
 
   public SimpleViewHolder(View itemView) {
     super(itemView);
     swipeLayout = (SwipeLayout) itemView.findViewById(R.id.swipe);
     avatarimage = (CircleImageView) itemView.findViewById(R.id.avatar);
     textViewData = (TextView) itemView.findViewById(R.id.text_data);
+    textViewChecked  = (TextView)itemView.findViewById(R.id.checked);
 
     itemView.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -84,6 +86,7 @@ private ArrayList<String> mDataset;
 
     Picasso.with(mContext).load(RecyclerViewTwoAdapter.URL_IMAGE_STUB[position%5]).into(viewHolder.avatarimage);
     viewHolder.textViewData.setText(item);
+    viewHolder.textViewChecked.setText(item);
     mItemManger.bindView(viewHolder.itemView, position);
   }
 

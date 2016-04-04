@@ -12,12 +12,62 @@
 
     <LinearLayout
       android:id="@+id/rigth_swipe"
-      android:layout_width="80dp"
+      android:layout_width="match_parent"
       android:layout_height="80dp"
-      android:background="#FF5534"
+      android:background="@color/colorAccent"
       android:gravity="center"
       android:tag="Bottom3"
       android:weightSum="10">
+
+      <ImageView
+        android:id="@+id/trash"
+        android:layout_width="27dp"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:src="@drawable/ic_person_add_white_24dp" />
+
+      <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="5"
+        android:paddingLeft="16dp">
+
+        <TextView
+          android:id="@+id/checked"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textStyle="bold"
+          android:textColor="#fff"
+          android:textSize="17sp" />
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text= "@string/checked_in"
+          android:textColor="#fff"
+          android:textSize="14sp" />
+
+
+      </LinearLayout>
+
+
+
+
+
+
+
+      <Button
+        android:id="@+id/undo"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_weight="4"
+        android:gravity="center"
+        android:text="@string/undo"
+        android:background="@android:color/transparent"
+        android:textColor="@color/black" />
+
+
 
     </LinearLayout>
 
@@ -25,10 +75,23 @@
       android:id="@+id/left_swipe"
       android:layout_width="80dp"
       android:layout_height="80dp"
-      android:background="#E4007C"
+      android:background="@color/colorAccent"
       android:gravity="center"
       android:tag="Bottom3"
       android:weightSum="10">
+
+      <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="7"
+        android:text="@string/check_in"
+        android:textColor="#fff"
+        android:gravity="center"
+        android:textSize="13sp" />
+
+
+
+
 
     </LinearLayout>
 

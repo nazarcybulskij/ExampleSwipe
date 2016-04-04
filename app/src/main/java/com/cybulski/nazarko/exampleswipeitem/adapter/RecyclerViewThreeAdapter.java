@@ -67,7 +67,6 @@ public class RecyclerViewThreeAdapter extends RecyclerSwipeAdapter<RecyclerViewT
   public void onBindViewHolder(final SimpleViewHolder viewHolder, final int position) {
     String item = mDataset.get(position);
     viewHolder.swipeLayout.setShowMode(SwipeLayout.ShowMode.LayDown);
-    viewHolder.swipeLayout.addDrag(SwipeLayout.DragEdge.Left, viewHolder.swipeLayout.findViewById(R.id.left_swipe));
     viewHolder.swipeLayout.addDrag(SwipeLayout.DragEdge.Right, viewHolder.swipeLayout.findViewById(R.id.rigth_swipe));
 
     viewHolder.swipeLayout.addSwipeListener(new SimpleSwipeListener() {
