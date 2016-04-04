@@ -5,4 +5,6 @@
   <string name="check_in">CHECK IN</string>
   <string name="undo">UNDO</string>
   <string name="checked_in">Checked in</string>
+  <string name="edit">edit</string>
+  <string name="search">search</string>
 </resources>

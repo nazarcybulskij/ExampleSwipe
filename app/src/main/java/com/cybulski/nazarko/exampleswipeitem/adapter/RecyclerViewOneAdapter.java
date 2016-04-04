@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +32,11 @@ public static class SimpleViewHolder extends RecyclerView.ViewHolder {
   CircleImageView avatarimage;
   TextView textViewData;
   TextView textViewChecked;
+  LinearLayout linearLayoutUndo;
+  TextView textViewchekin;
+
+
+
 
   public SimpleViewHolder(View itemView) {
     super(itemView);
@@ -37,6 +44,8 @@ public static class SimpleViewHolder extends RecyclerView.ViewHolder {
     avatarimage = (CircleImageView) itemView.findViewById(R.id.avatar);
     textViewData = (TextView) itemView.findViewById(R.id.text_data);
     textViewChecked  = (TextView)itemView.findViewById(R.id.checked);
+    textViewchekin = (TextView) itemView.findViewById(R.id.check_in);
+    linearLayoutUndo = (LinearLayout)itemView.findViewById(R.id.swipe_undo);
 
     itemView.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -50,6 +59,9 @@ public static class SimpleViewHolder extends RecyclerView.ViewHolder {
 
 private Context mContext;
 private ArrayList<String> mDataset;
+
+  SwipeLayout  previos;
+
 
   //protected SwipeItemRecyclerMangerImpl mItemManger = new SwipeItemRecyclerMangerImpl(this);
 
@@ -67,16 +79,44 @@ private ArrayList<String> mDataset;
   @Override
   public void onBindViewHolder(final SimpleViewHolder viewHolder, final int position) {
     String item = mDataset.get(position);
+
+
+
+
+
     viewHolder.swipeLayout.setShowMode(SwipeLayout.ShowMode.LayDown);
     viewHolder.swipeLayout.addDrag(SwipeLayout.DragEdge.Left, viewHolder.swipeLayout.findViewById(R.id.left_swipe));
-    viewHolder.swipeLayout.addDrag(SwipeLayout.DragEdge.Right, viewHolder.swipeLayout.findViewById(R.id.rigth_swipe));
+    viewHolder.swipeLayout.setRightSwipeEnabled(false);
+
 
     viewHolder.swipeLayout.addSwipeListener(new SimpleSwipeListener() {
       @Override
       public void onOpen(SwipeLayout layout) {
+//        if (previos!=layout){
+//          if (previos!=null){
+//            previos.close();
+//            previos = layout;
+//          }
+//
+//        }
+
+        
+
+
         //YoYo.with(Techniques.Tada).duration(500).delay(100).playOn(layout.findViewById(R.id.trash));
       }
+
+      @Override
+      public void onClose(SwipeLayout layout) {
+        viewHolder.textViewchekin.setVisibility(View.VISIBLE);
+        viewHolder.swipeLayout.findViewById(R.id.left_swipe).setLayoutParams(new FrameLayout.LayoutParams(160, 80));
+        viewHolder.linearLayoutUndo.setVisibility(View.GONE);
+
+      }
+
     });
+
+
     viewHolder.swipeLayout.setOnDoubleClickListener(new SwipeLayout.DoubleClickListener() {
       @Override
       public void onDoubleClick(SwipeLayout layout, boolean surface) {
@@ -84,7 +124,23 @@ private ArrayList<String> mDataset;
       }
     });
 
-    Picasso.with(mContext).load(RecyclerViewTwoAdapter.URL_IMAGE_STUB[position%5]).into(viewHolder.avatarimage);
+    viewHolder.swipeLayout.findViewById(R.id.left_swipe).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        viewHolder.linearLayoutUndo.setVisibility(View.VISIBLE);
+        viewHolder.textViewchekin.setVisibility(View.GONE);
+        viewHolder.swipeLayout.findViewById(R.id.left_swipe).setLayoutParams(new FrameLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 80));
+
+        viewHolder.swipeLayout.postDelayed(new Runnable() {
+          @Override
+          public void run() {
+            viewHolder.swipeLayout.open(SwipeLayout.DragEdge.Left);
+          }
+        },10);
+      }
+    });
+
+    Picasso.with(mContext).load(RecyclerViewTwoAdapter.URL_IMAGE_STUB[position % 5]).into(viewHolder.avatarimage);
     viewHolder.textViewData.setText(item);
     viewHolder.textViewChecked.setText(item);
     mItemManger.bindView(viewHolder.itemView, position);
