@@ -79,11 +79,9 @@ private ArrayList<String> mDataset;
   @Override
   public void onBindViewHolder(final SimpleViewHolder viewHolder, final int position) {
     String item = mDataset.get(position);
-
-
-
-
-
+    viewHolder.textViewchekin.setVisibility(View.VISIBLE);
+    viewHolder.swipeLayout.findViewById(R.id.left_swipe).setLayoutParams(new FrameLayout.LayoutParams(160, 80));
+    viewHolder.linearLayoutUndo.setVisibility(View.GONE);
     viewHolder.swipeLayout.setShowMode(SwipeLayout.ShowMode.LayDown);
     viewHolder.swipeLayout.addDrag(SwipeLayout.DragEdge.Left, viewHolder.swipeLayout.findViewById(R.id.left_swipe));
     viewHolder.swipeLayout.setRightSwipeEnabled(false);
@@ -99,8 +97,6 @@ private ArrayList<String> mDataset;
 //          }
 //
 //        }
-
-        
 
 
         //YoYo.with(Techniques.Tada).duration(500).delay(100).playOn(layout.findViewById(R.id.trash));
@@ -136,7 +132,7 @@ private ArrayList<String> mDataset;
           public void run() {
             viewHolder.swipeLayout.open(SwipeLayout.DragEdge.Left);
           }
-        },10);
+        },50);
       }
     });
 
