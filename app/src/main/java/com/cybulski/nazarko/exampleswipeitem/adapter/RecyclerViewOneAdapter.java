@@ -43,6 +43,7 @@ public static class SimpleViewHolder extends RecyclerView.ViewHolder {
   LinearLayout linearLayoutUndo;
   TextView textViewchekin;
   Button buttonUndo;
+  LinearLayout linearLayoutContent;
 
 
 
@@ -56,6 +57,7 @@ public static class SimpleViewHolder extends RecyclerView.ViewHolder {
     textViewchekin = (TextView) itemView.findViewById(R.id.check_in);
     linearLayoutUndo = (LinearLayout)itemView.findViewById(R.id.swipe_undo);
     buttonUndo = (Button)itemView.findViewById(R.id.undo);
+    linearLayoutContent = (LinearLayout)itemView.findViewById(R.id.linearlayoutcontent);
 
 
 //    itemView.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +78,14 @@ public static class SimpleViewHolder extends RecyclerView.ViewHolder {
 
   final int width ;
   final int heigth;
+
+  final View.OnTouchListener  touchListener = new View.OnTouchListener() {
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+      deleteitem();
+      return false;
+    }
+  };
 
 
   //protected SwipeItemRecyclerMangerImpl mItemManger = new SwipeItemRecyclerMangerImpl(this);
@@ -137,21 +147,9 @@ public static class SimpleViewHolder extends RecyclerView.ViewHolder {
       }
     });
 
-    viewHolder.avatarimage.setOnTouchListener(new View.OnTouchListener() {
-      @Override
-      public boolean onTouch(View v, MotionEvent event) {
-        deleteitem();
-        return false;
-      }
-    });
-
-    viewHolder.textViewData.setOnTouchListener(new View.OnTouchListener() {
-      @Override
-      public boolean onTouch(View v, MotionEvent event) {
-        deleteitem();
-        return false;
-      }
-    });
+    viewHolder.avatarimage.setOnTouchListener(touchListener);
+    viewHolder.textViewData.setOnTouchListener(touchListener);
+    viewHolder.linearLayoutContent.setOnTouchListener(touchListener);
 
 
     viewHolder.swipeLayout.setOnDoubleClickListener(new SwipeLayout.DoubleClickListener() {
