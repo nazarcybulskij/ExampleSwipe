@@ -82,7 +82,7 @@ public class RecyclerViewThreeAdapter extends RecyclerSwipeAdapter<RecyclerViewT
       }
     });
 
-    Picasso.with(mContext).load(RecyclerViewTwoAdapter.URL_IMAGE_STUB[position%5]).into(viewHolder.avatarimage);
+    Picasso.with(mContext).load(RecyclerViewTwoAdapter.URL_IMAGE_STUB[position%4]).into(viewHolder.avatarimage);
 
     viewHolder.textViewData.setText(item);
     mItemManger.bindView(viewHolder.itemView, position);

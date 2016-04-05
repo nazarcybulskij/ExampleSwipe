@@ -15,6 +15,7 @@ import com.daimajia.swipe.util.Attributes;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * Created by nazarko on 4/4/16.
@@ -25,6 +26,7 @@ public class OneFragment extends Fragment {
   private RecyclerView.Adapter mAdapter;
 
   private ArrayList<String> mDataSet;
+
 
   public OneFragment() {
     // Required empty public constructor

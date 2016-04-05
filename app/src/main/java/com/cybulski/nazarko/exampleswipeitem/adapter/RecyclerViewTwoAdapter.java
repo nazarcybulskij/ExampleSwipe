@@ -81,7 +81,7 @@ public class RecyclerViewTwoAdapter extends RecyclerSwipeAdapter<RecyclerViewTwo
       }
     });
 
-    Picasso.with(mContext).load(URL_IMAGE_STUB[position%5]).into(viewHolder.avatarimage);
+    Picasso.with(mContext).load(URL_IMAGE_STUB[position%4]).into(viewHolder.avatarimage);
 
     //viewHolder.textViewPos.setText((position + 1) + ".");
     viewHolder.textViewData.setText(item);
@@ -99,10 +99,10 @@ public class RecyclerViewTwoAdapter extends RecyclerSwipeAdapter<RecyclerViewTwo
   }
 
 
-  public static final String[] URL_IMAGE_STUB={
+  public static final String[] URL_IMAGE_STUB = {
       "https://pbs.twimg.com/profile_images/616076655547682816/6gMRtQyY.jpg",
       "http://gradle.org/wp-content/uploads/2015/08/IOS.jpg",
       "http://cypressnorth.com/wp-content/uploads/2013/07/windows-8-icon.png",
-      "http://camranger.com/wp-content/uploads/2014/10/Android-Icon.png",
-      "http://static1.squarespace.com/static/5005afd7e4b0a6953320bf3f/t/528cfce6e4b0c1452601a558/1384971527352/4651364311_f505cc3cc3_o.jpg"};
+      "http://static1.squarespace.com/static/5005afd7e4b0a6953320bf3f/t/528cfce6e4b0c1452601a558/1384971527352/4651364311_f505cc3cc3_o.jpg"
+  };
 }
