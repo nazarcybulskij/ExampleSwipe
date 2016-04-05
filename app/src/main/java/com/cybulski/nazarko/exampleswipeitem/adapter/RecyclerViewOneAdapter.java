@@ -112,7 +112,7 @@ public static class SimpleViewHolder extends RecyclerView.ViewHolder {
   @Override
   public void onBindViewHolder(final SimpleViewHolder viewHolder, final int position) {
     final String item = mDataset.get(position);
-    viewHolder.swipeLayout.close();
+    viewHolder.swipeLayout.close(false);
     viewHolder.textViewchekin.setVisibility(View.VISIBLE);
     viewHolder.swipeLayout.findViewById(R.id.left_swipe).setLayoutParams(new FrameLayout.LayoutParams(width, heigth));
     viewHolder.linearLayoutUndo.setVisibility(View.GONE);
@@ -151,13 +151,13 @@ public static class SimpleViewHolder extends RecyclerView.ViewHolder {
     viewHolder.textViewData.setOnTouchListener(touchListener);
     viewHolder.linearLayoutContent.setOnTouchListener(touchListener);
 
-
-    viewHolder.swipeLayout.setOnDoubleClickListener(new SwipeLayout.DoubleClickListener() {
-      @Override
-      public void onDoubleClick(SwipeLayout layout, boolean surface) {
-        Toast.makeText(mContext, "DoubleClick", Toast.LENGTH_SHORT).show();
-      }
-    });
+//
+//    viewHolder.swipeLayout.setOnDoubleClickListener(new SwipeLayout.DoubleClickListener() {
+//      @Override
+//      public void onDoubleClick(SwipeLayout layout, boolean surface) {
+//        Toast.makeText(mContext, "DoubleClick", Toast.LENGTH_SHORT).show();
+//      }
+//    });
 
     viewHolder.swipeLayout.findViewById(R.id.left_swipe).setOnClickListener(new View.OnClickListener() {
       @Override
@@ -172,8 +172,8 @@ public static class SimpleViewHolder extends RecyclerView.ViewHolder {
             viewHolder.swipeLayout.open(SwipeLayout.DragEdge.Left);
           }
         }, 50);
+        viewHolder.swipeLayout.close();
 
-        mItemManger.removeShownLayouts(viewHolder.swipeLayout);
         openPosution = position;
 
 
@@ -202,8 +202,7 @@ public static class SimpleViewHolder extends RecyclerView.ViewHolder {
     Picasso.with(mContext).load(mDataHashMap.get(item)).into(viewHolder.avatarimage, new Callback() {
       @Override
       public void onSuccess() {
-        Log.d("Size",item +" : "+viewHolder.avatarimage.getWidth()+" : "+viewHolder.avatarimage.getHeight()+" : "+mDataHashMap.get(item));
-        viewHolder.avatarimage.setVisibility(View.VISIBLE);
+        Log.d("Size", item + " : " + viewHolder.avatarimage.getWidth() + " : " + viewHolder.avatarimage.getHeight() + " : " + mDataHashMap.get(item));
       }
 
       @Override
@@ -233,13 +232,23 @@ public static class SimpleViewHolder extends RecyclerView.ViewHolder {
 
   public  void deleteitem( ){
     if (openPosution!=-1) {
-        mDataHashMap.remove(mDataset.get(openPosution));
-        mDataset.remove(openPosution);
-        notifyItemRemoved(openPosution);
-        notifyItemRangeChanged(openPosution, mDataset.size());
-        mItemManger.closeAllItems();
+//       mItemManger.removeShownLayouts(openholder.swipeLayout);
+//        mDataHashMap.remove(mDataset.get(openPosution));
+//        mDataset.remove(openPosution);
+//        notifyItemRemoved(openPosution);
+//        notifyItemRangeChanged(openPosution, mDataset.size());
+//        mItemManger.closeAllItems();
+        remove(openPosution);
+
         openPosution  = -1;
+
     }
+  }
+
+  public void remove(int position) {
+    mDataHashMap.remove(mDataset.get(openPosution));
+    mDataset.remove(position);
+    notifyItemRemoved(position);
   }
 
 

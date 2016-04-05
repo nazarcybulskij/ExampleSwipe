@@ -8,14 +8,21 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.cybulski.nazarko.exampleswipeitem.R;
 import com.cybulski.nazarko.exampleswipeitem.adapter.RecyclerViewOneAdapter;
 import com.daimajia.swipe.util.Attributes;
+import com.hudomju.swipe.OnItemClickListener;
+import com.hudomju.swipe.SwipeToDismissTouchListener;
+import com.hudomju.swipe.SwipeableItemClickListener;
+import com.hudomju.swipe.adapter.RecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+
+import static android.widget.Toast.LENGTH_SHORT;
 
 /**
  * Created by nazarko on 4/4/16.
@@ -58,6 +65,39 @@ public class OneFragment extends Fragment {
 
         /* Listeners */
     recyclerView.setOnScrollListener(onScrollListener);
+
+//    final SwipeToDismissTouchListener<RecyclerViewAdapter> touchListener =
+//        new SwipeToDismissTouchListener<>(
+//            new RecyclerViewAdapter(recyclerView),
+//            new SwipeToDismissTouchListener.DismissCallbacks<RecyclerViewAdapter>() {
+//              @Override
+//              public boolean canDismiss(int position) {
+//                return true;
+//              }
+//
+//              @Override
+//              public void onPendingDismiss(RecyclerViewAdapter recyclerView, int position) {
+//
+//              }
+//
+//              @Override
+//              public void onDismiss(RecyclerViewAdapter view, int position) {
+//                ((RecyclerViewOneAdapter)mAdapter).remove(position);
+//              }
+//            });
+//    touchListener.setDismissDelay(3000);
+//    recyclerView.setOnTouchListener(touchListener);
+//    // Setting this scroll listener is required to ensure that during ListView scrolling,
+//    // we don't look for swipes.
+//    recyclerView.setOnScrollListener((RecyclerView.OnScrollListener) touchListener.makeScrollListener());
+//    recyclerView.addOnItemTouchListener(new SwipeableItemClickListener(getActivity(),
+//        new OnItemClickListener() {
+//          @Override
+//          public void onItemClick(View view, int position) {
+//
+//          }
+//        }));
+
     return view;
   }
 
