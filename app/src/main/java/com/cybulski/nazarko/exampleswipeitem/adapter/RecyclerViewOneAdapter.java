@@ -239,16 +239,16 @@ public static class SimpleViewHolder extends RecyclerView.ViewHolder {
 //        notifyItemRangeChanged(openPosution, mDataset.size());
 //        mItemManger.closeAllItems();
         remove(openPosution);
-
         openPosution  = -1;
 
     }
   }
 
   public void remove(int position) {
-    mDataHashMap.remove(mDataset.get(openPosution));
+    mDataHashMap.remove(mDataset.get(position));
     mDataset.remove(position);
     notifyItemRemoved(position);
+    notifyItemRangeChanged(position, mDataset.size());
   }
 
 
