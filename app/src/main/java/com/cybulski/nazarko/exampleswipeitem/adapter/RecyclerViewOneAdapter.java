@@ -1,6 +1,8 @@
 package com.cybulski.nazarko.exampleswipeitem.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,7 +20,9 @@ import com.cybulski.nazarko.exampleswipeitem.utils.SizeConverter;
 import com.daimajia.swipe.SimpleSwipeListener;
 import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -97,7 +101,7 @@ public static class SimpleViewHolder extends RecyclerView.ViewHolder {
 
   @Override
   public void onBindViewHolder(final SimpleViewHolder viewHolder, final int position) {
-    String item = mDataset.get(position);
+    final String item = mDataset.get(position);
     viewHolder.swipeLayout.close();
     viewHolder.textViewchekin.setVisibility(View.VISIBLE);
     viewHolder.swipeLayout.findViewById(R.id.left_swipe).setLayoutParams(new FrameLayout.LayoutParams(width, heigth));
@@ -175,12 +179,42 @@ public static class SimpleViewHolder extends RecyclerView.ViewHolder {
         openPosution = position;
 
 
+      }
+    });
 
+//    Picasso.with(mContext).load(mDataHashMap.get(item)).into(new Target() {
+//      @Override
+//      public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+//        viewHolder.avatarimage.setImageBitmap(bitmap);
+//
+//      }
+//
+//      @Override
+//      public void onBitmapFailed(Drawable errorDrawable) {
+//
+//      }
+//
+//      @Override
+//      public void onPrepareLoad(Drawable placeHolderDrawable) {
+//
+//      }
+//    });
+
+    Log.d("Size","1 "+item +" : "+viewHolder.avatarimage.getWidth()+" : "+viewHolder.avatarimage.getHeight()+" : "+mDataHashMap.get(item));
+    Picasso.with(mContext).load(mDataHashMap.get(item)).into(viewHolder.avatarimage, new Callback() {
+      @Override
+      public void onSuccess() {
+        Log.d("Size",item +" : "+viewHolder.avatarimage.getWidth()+" : "+viewHolder.avatarimage.getHeight()+" : "+mDataHashMap.get(item));
+        viewHolder.avatarimage.setVisibility(View.VISIBLE);
+      }
+
+      @Override
+      public void onError() {
 
       }
     });
 
-    Picasso.with(mContext).load(mDataHashMap.get(item)).into(viewHolder.avatarimage);
+
     viewHolder.textViewData.setText(item);
     viewHolder.textViewChecked.setText(item);
     mItemManger.bindView(viewHolder.itemView, position);
@@ -201,8 +235,8 @@ public static class SimpleViewHolder extends RecyclerView.ViewHolder {
 
   public  void deleteitem( ){
     if (openPosution!=-1) {
-        mDataset.remove(openPosution);
         mDataHashMap.remove(mDataset.get(openPosution));
+        mDataset.remove(openPosution);
         notifyItemRemoved(openPosution);
         notifyItemRangeChanged(openPosution, mDataset.size());
         mItemManger.closeAllItems();
