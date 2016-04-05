@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -135,6 +136,7 @@ public static class SimpleViewHolder extends RecyclerView.ViewHolder {
         viewHolder.swipeLayout.findViewById(R.id.left_swipe).setLayoutParams(new FrameLayout.LayoutParams(width, heigth));
         viewHolder.linearLayoutUndo.setVisibility(View.GONE);
         openPosution = -1;
+        openholder = null;
 
       }
 
@@ -175,6 +177,7 @@ public static class SimpleViewHolder extends RecyclerView.ViewHolder {
         viewHolder.swipeLayout.close();
 
         openPosution = position;
+        openholder = viewHolder;
 
 
       }
@@ -199,17 +202,7 @@ public static class SimpleViewHolder extends RecyclerView.ViewHolder {
 //    });
 
     Log.d("Size","1 "+item +" : "+viewHolder.avatarimage.getWidth()+" : "+viewHolder.avatarimage.getHeight()+" : "+mDataHashMap.get(item));
-    Picasso.with(mContext).load(mDataHashMap.get(item)).into(viewHolder.avatarimage, new Callback() {
-      @Override
-      public void onSuccess() {
-        Log.d("Size", item + " : " + viewHolder.avatarimage.getWidth() + " : " + viewHolder.avatarimage.getHeight() + " : " + mDataHashMap.get(item));
-      }
-
-      @Override
-      public void onError() {
-
-      }
-    });
+    Picasso.with(mContext).load(mDataHashMap.get(item)).into(viewHolder.avatarimage);
 
 
     viewHolder.textViewData.setText(item);
@@ -228,11 +221,12 @@ public static class SimpleViewHolder extends RecyclerView.ViewHolder {
   }
 
   int openPosution =-1;
+  RecyclerViewOneAdapter.SimpleViewHolder openholder = null;
 
 
   public  void deleteitem( ){
     if (openPosution!=-1) {
-//       mItemManger.removeShownLayouts(openholder.swipeLayout);
+      //mItemManger.removeShownLayouts(openholder.swipeLayout);
 //        mDataHashMap.remove(mDataset.get(openPosution));
 //        mDataset.remove(openPosution);
 //        notifyItemRemoved(openPosution);
@@ -240,15 +234,22 @@ public static class SimpleViewHolder extends RecyclerView.ViewHolder {
 //        mItemManger.closeAllItems();
         remove(openPosution);
         openPosution  = -1;
+        openholder = null;
 
     }
   }
 
   public void remove(int position) {
+
+
+
     mDataHashMap.remove(mDataset.get(position));
     mDataset.remove(position);
     notifyItemRemoved(position);
     notifyItemRangeChanged(position, mDataset.size());
+
+//    mItemManger.removeShownLayouts(openholder.swipeLayout);
+    mItemManger.closeAllItems();
   }
 
 
